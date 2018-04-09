@@ -1,0 +1,64 @@
+<h1>{{bird.name}}</h1>
+
+<div class="bird-info">
+
+    <h2>Bird Information</h2>
+
+    <h3>Description</h3>
+    <p>{{bird.description}}</p>
+
+    <h3>Average Eggs Laid</h3>
+    <p>{{bird.averageEggs}}</p>
+
+    <h3>Conservation Status</h3>
+    {{#if bird.endangered}}
+        <p>{{bird.name}} is endangered</p>
+    {{else}}
+        <P>{{bird.name}} is not endangered</p>
+    {{/if}}
+
+    <h3>Nest Information</h3>
+
+    <p>Location: {{bird.nest.location}}</p>
+    <p>Materials: {{bird.nest.materials}}</p>
+
+</div>
+
+<div class="sighting-dates">
+
+    <h2>Bird Sightings</h2>
+
+    <div class="new-sighting-form">
+
+        <h3>Report a new sighting</h3>
+
+        <form method="POST" action="/addSighting">
+            Sighting date: <input name="date" type="datetime-local" required>
+            <input type="hidden" name="_id" value="{{bird._id}}">
+            <button type="submit">Submit Sighting</button>
+        </form>
+
+        <div class="flash-errors">
+            {{#if messages}}
+                <p class="error-message">{{messages.error}}</p>
+            {{/if}}
+        </div>
+
+    </div>
+
+    <div class="sighting-list">
+
+        <p>Number of sightings: {{length bird.datesSeen}}</p>
+
+        <h2>All sighting dates, local Minnesota time</h3>
+            {{#each bird.datesSeen}}
+                <p>{{formatDate this}}</p>
+            {{else}}
+                <P>No sightings for {{bird.name}}</p>
+            {{/each}}
+    </div>
+
+</div>
+
+<hr>
+<a href="/">Home</a>
