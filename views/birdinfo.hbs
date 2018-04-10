@@ -21,6 +21,8 @@
 
     <p>Location: {{bird.nest.location}}</p>
     <p>Materials: {{bird.nest.materials}}</p>
+
+    <h3>Height</h3>
     <p>Height: {{bird.nest.height}}</p>
 
 </div>
@@ -61,7 +63,7 @@
 
 </div>
 <form method="POST" action="/deleteSighting">
-    <button type="submit">Delete Bird</button>
+    <button type="submit" id="deleteButton">Delete Bird</button>
 </form>
 <hr>
 <a href="/">Home</a>
