@@ -21,6 +21,7 @@
 
     <p>Location: {{bird.nest.location}}</p>
     <p>Materials: {{bird.nest.materials}}</p>
+    <p>Height: {{bird.nest.height}}</p>
 
 </div>
 
@@ -50,7 +51,7 @@
 
         <p>Number of sightings: {{length bird.datesSeen}}</p>
 
-        <h2>All sighting dates, local Minnesota time</h3>
+        <h2>All sighting dates, local Minnesota time</h2>
             {{#each bird.datesSeen}}
                 <p>{{formatDate this}}</p>
             {{else}}
@@ -59,6 +60,9 @@
     </div>
 
 </div>
-
+<form method="POST" action="/deleteSighting">
+    <button type="submit">Delete Bird</button>
+</form>
 <hr>
 <a href="/">Home</a>
+<script src="/javascripts/deleteBird"></script>
