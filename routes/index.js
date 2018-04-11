@@ -108,7 +108,7 @@ router.post('/addSighting', function(req, res, next){
 });
 
 router.post('/deleteSighting', function(req, res ,next) {
-    Bird.remove({_id: req.body._id})
+    Bird.findByIdAndRemove(req.body._id)
         .then((birdDoc) => {
             if (birdDoc) {
                 res.redirect('/');
