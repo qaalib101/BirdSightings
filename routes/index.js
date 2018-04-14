@@ -131,6 +131,36 @@ router.post('/deleteSighting', function(req, res ,next) {
     });
 });
 
+router.post('/updateBird', function(req, res, next){
 
+    // Save the Bird object to DB as new Bird document
+    Bird.findOneAndUpdate(
+        { name: req.body.name },
+        {$setOnInsert: {
+            description: req.body.description,
+                averageEggs: req.body.averageEggs,
+                nest: {location: req.body.nestLocation,
+                    materials: req.body.nestMaterials}}},
+        {runValidators: true})
+        .then( (birdDoc) => {
+        console.log(birdDoc);   // not required, but helps see what's happening
+        res.redirect('/');      // create a request to / to load the home page
+    }).catch((err) => {
+        if (err.name == 'ValidationError') {
+            req.flash('error', err.message);
+            console.log(err);
+            res.redirect('/');
+        }
+        else if(err.code === 11000){
+            req.flash('error', '${req.body.name} is already in database');
+            console.log(err);
+            res.redirect('/');
+        }
+        else {
+            next(err);
+        }
+
+    });
+});
 
 module.exports = router;

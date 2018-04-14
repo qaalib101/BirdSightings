@@ -25,6 +25,17 @@
     <h3>Height</h3>
     <p>Height: {{bird.nest.height}}</p>
 
+    <form method="POST" action="/updateBird">
+
+        Description:    <input name="description">                <br>
+        Average Eggs:   <input name="averageEggs" type="number" min="1" max="50">  <br>
+        Nest Materials: <input name="nestMaterials">              <br>
+        Nest Location:  <input name="nestLocation">                 <br>
+        Height:         <input name="birdHeight">                  <br>
+
+        <button type=submit>Submit</button>
+
+    </form>
 </div>
 
 <div class="sighting-dates">
