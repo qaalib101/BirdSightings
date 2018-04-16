@@ -123,7 +123,7 @@ router.post('/deleteSighting', function(req, res ,next) {
         }
         else if (err.name === 'ValidationError') {
             req.flash('error', err.message);
-            res.redirect(`/bird/${req.body._id}`);
+            res.redirect('/bird/${req.body._id}');
         }
         else {
             next(err);
@@ -132,19 +132,17 @@ router.post('/deleteSighting', function(req, res ,next) {
 });
 
 router.post('/updateBird', function(req, res, next){
-
-    // Save the Bird object to DB as new Bird document
+    // update bird document
     Bird.findOneAndUpdate(
-        { name: req.body.name },
-        {$setOnInsert: {
-            description: req.body.description,
+        { id: req.body._id },
+        {$set: {description: req.body.description,
                 averageEggs: req.body.averageEggs,
                 nest: {location: req.body.nestLocation,
                     materials: req.body.nestMaterials}}},
         {runValidators: true})
         .then( (birdDoc) => {
-        console.log(birdDoc);   // not required, but helps see what's happening
-        res.redirect('/');      // create a request to / to load the home page
+        console.log(birdDoc);
+        res.redirect('/');
     }).catch((err) => {
         if (err.name == 'ValidationError') {
             req.flash('error', err.message);
