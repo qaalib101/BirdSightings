@@ -55,6 +55,7 @@ var birdSchema = new mongoose.Schema({
 });
 
 var Bird = mongoose.model('Bird', birdSchema);
+
 birdSchema.plugin(uniqueValidator);
 
 module.exports = Bird;

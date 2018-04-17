@@ -18,7 +18,7 @@ var db_url = process.env.BIRD_DB_URL;
 
 mongoose.connect(db_url)
     .then( () => { console.log('Connected to mLab'); })
-.catch( (err) => { console.log('Error connecting to mLab', err); })
+.catch( (err) => { console.log('Error connecting to mLab', err); });
 
 
 var app = express();
