@@ -137,10 +137,11 @@ router.post('/updateBird', function(req, res, next){
         { id: req.body._id },
         {$set: {description: req.body.description,
                 averageEggs: req.body.averageEggs,
+                height: req.body.height,
                 nest: {location: req.body.nestLocation,
                     materials: req.body.nestMaterials}}},
         {runValidators: true})
-        .then( (birdDoc) => {
+        .save().then( (birdDoc) => {
         console.log(birdDoc);
         res.redirect('/');
     }).catch((err) => {
