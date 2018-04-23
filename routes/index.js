@@ -140,7 +140,6 @@ router.post('/updateBird', function(req, res, next){
                 height: req.body.height,
                 nest: {location: req.body.nestLocation,
                     materials: req.body.nestMaterials}}},
-        {upsert: true},
         {runValidators: true})
         .then( (birdDoc) => {
         console.log(birdDoc);
